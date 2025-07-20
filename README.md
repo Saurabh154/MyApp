@@ -1,9 +1,6 @@
 # Dynamic Form Builder
 
-## 🚀 Live Demo
-
-**Experience the application live:** : 
----
+## 🚀 Live Demo : https://my-app-woad-pi.vercel.app/
 
 ### ✨ Project Overview
 
@@ -38,12 +35,7 @@ Follow these steps to get the project up and running on your local machine.
 1.  **Clone the repository (or create a new project as guided):**
     If you're starting fresh, follow the setup steps below. If you have the project files, ensure you are in the project's root directory.
 
-2.  **Navigate into the project directory:**
-    ```bash
-    cd dynamic-form-builder
-    ```
-
-3.  **Install dependencies:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
