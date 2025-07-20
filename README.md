@@ -1,12 +1,57 @@
-# React + Vite
+# Dynamic Form Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Live Demo
 
-Currently, two official plugins are available:
+**Experience the application live:** : 
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ✨ Project Overview
 
-## Expanding the ESLint configuration
+A dynamic form builder application built with React, Vite, Tailwind CSS, and ShadCN UI. This tool allows users to create nested form structures with real-time JSON schema output.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+* **Dynamic Field Creation:** Add new form fields at the top level or within nested structures.
+* **Field Customization:**
+    * Set custom field names.
+    * Choose from various data types: String, Number, Boolean, Nested, ObjectID, Float, Array.
+    * Toggle field activation status.
+* **Nested Structures:** Support for infinitely nested `object` and `array` types, allowing complex schema definitions.
+* **Real-time JSON Output:** Instantly view the generated JSON schema reflecting all form modifications.
+* **Intuitive UI:** Built with ShadCN UI for a clean, modern, and accessible user interface.
+* **Responsive Design:** Adapts to different screen sizes using Tailwind CSS.
+
+## 🚀 Technologies Used
+
+* **React (v18+)**: Frontend JavaScript library for building user interfaces.
+* **Vite**: Next-generation frontend tooling for a fast development experience.
+* **Tailwind CSS**: A utility-first CSS framework for rapidly styling the application.
+* **ShadCN UI**: A collection of reusable components built with Radix UI and Tailwind CSS, offering a sleek and customizable design system.
+* **Lucide React**: Beautiful, open-source icons for React projects.
+* **UUID**: For generating unique IDs for each form field.
+
+
+## 🛠️ Setup and Installation
+
+Follow these steps to get the project up and running on your local machine.
+
+1.  **Clone the repository (or create a new project as guided):**
+    If you're starting fresh, follow the setup steps below. If you have the project files, ensure you are in the project's root directory.
+
+2.  **Navigate into the project directory:**
+    ```bash
+    cd dynamic-form-builder
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+    This will install all required Node.js packages, including React, Vite, Tailwind CSS, ShadCN UI dependencies, `uuid`, and `lucide-react`.
+
+## ▶️ Running the Application
+
+Once all dependencies are installed, you can start the development server:
+
+```bash
+npm run dev
