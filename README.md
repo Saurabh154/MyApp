@@ -10,9 +10,13 @@ A dynamic form builder application built with React, Vite, Tailwind CSS, and Sha
 
 * **Dynamic Field Creation:** Add new form fields at the top level or within nested structures.
 * **Field Customization:**
-    * Set custom field names.
+    * Edit the name/key of a field
     * Choose from various data types: String, Number, Boolean, Nested, ObjectID, Float, Array.
+    * Add more fields dynamically
+    * Add nested fields for the 'Nested' type (recursively)
     * Toggle field activation status.
+    * Delete a field
+   
 * **Nested Structures:** Support for infinitely nested `object` and `array` types, allowing complex schema definitions.
 * **Real-time JSON Output:** Instantly view the generated JSON schema reflecting all form modifications.
 * **Intuitive UI:** Built with ShadCN UI for a clean, modern, and accessible user interface.
