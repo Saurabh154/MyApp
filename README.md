@@ -32,8 +32,7 @@ A dynamic form builder application built with React, Vite, Tailwind CSS, and Sha
 
 Follow these steps to get the project up and running on your local machine.
 
-1.  **Clone the repository (or create a new project as guided):**
-    If you're starting fresh, follow the setup steps below. If you have the project files, ensure you are in the project's root directory.
+1.  **Clone the repository *
 
 2.  **Install dependencies:**
     ```bash
