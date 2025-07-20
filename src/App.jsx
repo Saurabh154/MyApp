@@ -1,35 +1,18 @@
-// src/App.jsx
-import React, { useState, useEffect, useCallback } from 'react'; // React hooks
-import { Button } from '@/components/ui/button'; // ShadCN Button
-import FieldList from './components/FieldList'; // FieldList component
-import JsonDisplay from './components/JsonDisplay'; // JsonDisplay component
-import { generateJsonSchema } from './utils/jsonGenerator'; // Our utility function
-import { Plus } from 'lucide-react'; // Plus icon for "Add Top-Level Item"
-// import { v4 as uuidv4 } from 'uuid'; // For generating unique IDs
+import React, { useState, useEffect, useCallback } from 'react';
+import { Button } from '@/components/ui/button'; 
+import FieldList from './components/FieldList'; 
+import JsonDisplay from './components/JsonDisplay'; 
+import { generateJsonSchema } from './utils/jsonGenerator'; 
+import { Plus } from 'lucide-react'; 
 
 function App() {
   // State to hold the entire form structure.
-  // Each object in this array represents a top-level field.
-  // 'children' array exists if a field's type is 'nested' or 'array'.
   const [formFields, setFormFields] = useState([]);
 
   // State to hold the formatted JSON string for display in the right pane.
   const [displayedJson, setDisplayedJson] = useState('{}');
 
-  // --- Recursive State Manipulation Functions ---
-  // These functions are critical. They handle finding and updating/deleting/adding
-  // fields deeply within the nested 'formFields' array while maintaining immutability.
-
-  /**
-   * Recursively finds and updates a specific field within the nested 'formFields' structure.
-   * It creates new arrays and objects at each level of modification to ensure React's immutability.
-   *
-   * @param {Array<Object>} currentFields - The current array of fields being processed at this level of recursion.
-   * @param {string[]} path - An array of IDs representing the path from the root to the PARENT of the target field.
-   * @param {string} fieldId - The ID of the specific field to be updated.
-   * @param {object} updates - An object containing the properties to update on the field (e.g., { name: 'new', type: 'string' }).
-   * @returns {Array<Object>} A new array of fields with the specified field updated.
-   */
+ 
   const updateFieldInState = useCallback((
     currentFields,
     path,
@@ -50,54 +33,51 @@ function App() {
     return currentFields.map(field => {
       // Find the parent field in the current 'currentFields' array
       if (field.id === currentPathId) {
-        // Only recurse into children if it's a 'nested' or 'array' type and has children.
-        // Ensure children array exists before passing it for recursion.
+      
         if ((field.type === 'nested' || field.type === 'array') && field.children) {
           return {
             ...field,
-            // Recursively call updateFieldInState on the children array
+         
             children: updateFieldInState(field.children, restPath, fieldId, updates),
           };
         }
       }
       return field; // Return field as is if it's not the target parent
     });
-  }, []); // Dependencies: This function itself has no external dependencies beyond its arguments
+  }, []); 
 
   const deleteFieldFromState = useCallback((
     currentFields,
     path,
     fieldIdToDelete
   ) => {
-    // Base Case: If the path is empty, we are at the target list of fields.
-    // Filter out the field with the specified ID.
+  
     if (path.length === 0) {
       return currentFields.filter(field => field.id !== fieldIdToDelete);
     }
 
-    // Recursive Step: Path is not empty, recurse deeper.
+  
     const [currentPathId, ...restPath] = path;
     return currentFields.map(field => {
       if (field.id === currentPathId) {
         if ((field.type === 'nested' || field.type === 'array') && field.children) {
           return {
             ...field,
-            // Recursively call deleteFieldFromState on the children array
+         
             children: deleteFieldFromState(field.children, restPath, fieldIdToDelete),
           };
         }
       }
       return field;
     });
-  }, []); // Dependencies: None
+  }, []); 
 
   const addFieldToState = useCallback((
     currentFields,
     path,
     newField
   ) => {
-    // Base Case: If the path is empty, we are at the target list (root or immediate child list).
-    // Add the new field to the current array.
+    
     if (path.length === 0) {
       return [...currentFields, newField];
     }
@@ -106,8 +86,7 @@ function App() {
     const [currentPathId, ...restPath] = path;
     return currentFields.map(field => {
       if (field.id === currentPathId) {
-        // Ensure 'children' array exists. If a 'nested' or 'array' field
-        // was just created, its children array might be null or undefined initially.
+       
         const updatedChildren = addFieldToState(field.children || [], restPath, newField);
         return {
           ...field,
@@ -118,11 +97,7 @@ function App() {
     });
   }, []); // Dependencies: None
 
-  // --- Handlers for FieldList/FieldRow components ---
-  // These are passed down as props to the child components and trigger state updates.
 
-  // Handles adding a new field at any level.
-  // The 'path' determines where in the nested structure the field is added.
   const handleAddField = useCallback((path, newField) => {
     setFormFields(prevFields => addFieldToState(prevFields, path, newField));
   }, [addFieldToState]); // Dependency: addFieldToState ensures useCallback memoizes correctly
